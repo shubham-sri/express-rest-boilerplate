@@ -13,10 +13,16 @@ dotenv.config()
 import Debug from 'debug'
 import http from 'http'
 
-import { App } from '../app'
+import { ResponseUtils } from '../utils'
+import { App } from '../index'
 import { SERVER_PORT } from '../config'
 
 const debug = Debug('express-rest-boilerplate:server')
+
+/**
+ * Setup dispatch response in express.
+ */
+ResponseUtils.setup()
 
 /**
  * Get port from environment and store in Express.

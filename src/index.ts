@@ -2,6 +2,8 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import cors from 'cors'
+import { ResponseControllers } from './controllers'
+import { IndexRoute } from './routes'
 
 const app = express()
 
@@ -11,12 +13,10 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(cors())
 
-app.use('/api/v0', (_req, res) => {
-  res.send('ok')
-})
+app.use(IndexRoute)
 
-// app.use(ErrorControllers.create404Error)
+app.use(ResponseControllers.throwNotFoundError)
 
-// app.use(ErrorControllers.dispatch)
+app.use(ResponseControllers.handleError)
 
 export const App = app
