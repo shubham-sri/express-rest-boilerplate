@@ -1,4 +1,4 @@
-import { HttpDefaultMessage, HttpStatus } from '../types'
+import { HttpDefaultMessage, HttpStatus } from '../../types'
 
 export class ErrorResponse {
   public readonly status: HttpStatus
