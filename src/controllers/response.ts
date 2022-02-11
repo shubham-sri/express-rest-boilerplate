@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import { ErrorResponse } from '../models'
+import { ErrorResponse, SuccessResponse } from '../models'
 import { HttpStatus, HttpDefaultMessage } from '../types'
 
 export const ResponseControllers = {
@@ -18,7 +18,7 @@ export const ResponseControllers = {
     _req: Request,
     res: Response,
     _next: NextFunction,
-  ): Promise<Response<any, Record<string, any>>> {
+  ): Promise<Response> {
     res.status(error.status)
     return res.send(error)
   },

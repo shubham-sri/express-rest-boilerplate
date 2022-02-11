@@ -1,11 +1,20 @@
 import { Router } from 'express'
-import { ErrorResponse } from '../../models'
-import { HttpStatus } from '../../types'
+import { JwtTestControllers } from '../../controllers'
+import { JwtMiddleware } from '../../middlewares'
+import { UserPermissions } from '../../types'
 
 const router = Router()
 
-router.use('/', (req, res) => {
-  res.dispatch(new ErrorResponse(HttpStatus.NotFound))
-})
+router.get(
+  '/0',
+  JwtMiddleware.filterAuth([UserPermissions.all]),
+  JwtTestControllers.ok,
+)
+
+router.get(
+  '/1',
+  JwtMiddleware.filterAuth([UserPermissions.allC]),
+  JwtTestControllers.ok,
+)
 
 export const V0Route = router
